@@ -9,6 +9,8 @@ info:
     url: http://www.apache.org/licenses/LICENSE-2.0.html
   version: 1.0.0
 servers:
+- url: https://virtserver.swaggerhub.com/MerlijnvanUden/tutorial/1.0.0
+  description: SwaggerHub API Auto Mocking
 - url: https://virtserver.swaggerhub.com/tutorial/1.0.0
   description: SwaggerHub API Auto Mocking
 paths:
@@ -104,8 +106,9 @@ components:
       type: object
       properties:
         student_id:
-          type: integer
-          example: 12345
+          type: string
+          format: uuid
+          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
         first_name:
           type: string
           example: John
@@ -122,7 +125,7 @@ components:
           items:
             $ref: '#/components/schemas/GradeRecord'
       example:
-        student_id: 12345
+        student_id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
         last_name: Doe
         grade_records:
         - subject_name: Mathematics
