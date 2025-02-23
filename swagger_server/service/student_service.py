@@ -23,7 +23,8 @@ def add(student=None):
 
     # Insert new student
     student_dict = student.to_dict()
-    return student_collection.insert_one(student_dict)
+    result = student_collection.insert_one(student_dict)
+    return str(result.inserted_id)
 
 
 def get_by_id(student_id=None, subject=None):
@@ -36,6 +37,7 @@ def get_by_id(student_id=None, subject=None):
     if not student:
         return "not found", 404
 
+    student["_id"] = str(student["_id"])
     return student
 
 def delete(student_id=None):
