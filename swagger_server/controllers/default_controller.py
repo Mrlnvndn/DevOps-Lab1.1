@@ -14,11 +14,12 @@ def add_student(body=None):  # noqa: E501
     :param body: Student item to add
     :type body: dict | bytes
 
-    :rtype: str
+    :rtype: int
     """
     if connexion.request.is_json:
         body = Student.from_dict(connexion.request.get_json())  # noqa: E501
-    return 'do some magic!'
+        return add(body)
+    return 500, 'error'
 
 
 def delete_student(student_id):  # noqa: E501
@@ -27,11 +28,11 @@ def delete_student(student_id):  # noqa: E501
     delete a single student  # noqa: E501
 
     :param student_id: the uid
-    :type student_id: 
+    :type student_id: int
 
     :rtype: object
     """
-    return 'do some magic!'
+    return delete(student_id)
 
 
 def get_student_by_id(student_id):  # noqa: E501
@@ -40,8 +41,8 @@ def get_student_by_id(student_id):  # noqa: E501
     Returns a single student # noqa: E501
 
     :param student_id: the uid
-    :type student_id: 
+    :type student_id: int
 
     :rtype: Student
     """
-    return 'do some magic!'
+    return get_by_id(student_id)

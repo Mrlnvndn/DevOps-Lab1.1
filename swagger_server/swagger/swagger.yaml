@@ -9,8 +9,6 @@ info:
     url: http://www.apache.org/licenses/LICENSE-2.0.html
   version: 1.0.0
 servers:
-- url: https://virtserver.swaggerhub.com/MerlijnvanUden/tutorial/1.0.0
-  description: SwaggerHub API Auto Mocking
 - url: https://virtserver.swaggerhub.com/tutorial/1.0.0
   description: SwaggerHub API Auto Mocking
 paths:
@@ -27,8 +25,7 @@ paths:
         style: simple
         explode: false
         schema:
-          type: string
-          format: uuid
+          type: integer
       responses:
         "200":
           description: Successful operation
@@ -54,8 +51,7 @@ paths:
         style: simple
         explode: false
         schema:
-          type: string
-          format: uuid
+          type: integer
       responses:
         "200":
           description: Successful operation
@@ -87,8 +83,7 @@ paths:
           content:
             application/json:
               schema:
-                type: string
-                format: uuid
+                type: integer
                 x-content-type: application/json
         "400":
           description: "invalid input, object invalid"
@@ -102,13 +97,11 @@ components:
       - first_name
       - grade_records
       - last_name
-      - student_id
       type: object
       properties:
         student_id:
-          type: string
-          format: uuid
-          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+          type: integer
+          example: 1
         first_name:
           type: string
           example: John
@@ -125,7 +118,7 @@ components:
           items:
             $ref: '#/components/schemas/GradeRecord'
       example:
-        student_id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+        student_id: 1
         last_name: Doe
         grade_records:
         - subject_name: Mathematics
