@@ -17,23 +17,16 @@ class TestDefaultController(BaseTestCase):
 
         Add a new student
         """
-        body = Student()
+        body = Student(
+            first_name="Merlijn",
+            last_name="van Uden",
+            student_id=56
+        )
         response = self.client.open(
             '/MerlijnvanUden/tutorial/1.0.0/student',
             method='POST',
             data=json.dumps(body),
             content_type='application/json')
-        self.assert200(response,
-                       'Response body is : ' + response.data.decode('utf-8'))
-
-    def test_delete_student(self):
-        """Test case for delete_student
-
-        deletes a student
-        """
-        response = self.client.open(
-            '/MerlijnvanUden/tutorial/1.0.0/student/{student_id}'.format(student_id=56),
-            method='DELETE')
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
@@ -48,6 +41,16 @@ class TestDefaultController(BaseTestCase):
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
+    def test_delete_student(self):
+        """Test case for delete_student
+
+        deletes a student
+        """
+        response = self.client.open(
+            '/MerlijnvanUden/tutorial/1.0.0/student/{student_id}'.format(student_id=56),
+            method='DELETE')
+        self.assert200(response,
+                       'Response body is : ' + response.data.decode('utf-8'))
 
 if __name__ == '__main__':
     import unittest
