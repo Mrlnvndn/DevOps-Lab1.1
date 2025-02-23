@@ -5,6 +5,7 @@ from __future__ import absolute_import
 from flask import json
 from six import BytesIO
 
+from swagger_server.models import GradeRecord
 from swagger_server.models.student import Student  # noqa: E501
 from swagger_server.test import BaseTestCase
 
@@ -20,6 +21,12 @@ class TestDefaultController(BaseTestCase):
         body = Student(
             first_name="Merlijn",
             last_name="van Uden",
+            grade_records= [
+                GradeRecord(
+                    subject_name="DevOps",
+                    grade=9.0
+                )
+            ],
             student_id=56
         )
         response = self.client.open(
