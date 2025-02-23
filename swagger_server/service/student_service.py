@@ -1,41 +1,51 @@
 import os
-import tempfile
-from functools import reduce
+from pymongo import MongoClient
 
-from tinydb import TinyDB, Query
-
-db_dir_path = tempfile.gettempdir()
-db_file_path = os.path.join(db_dir_path, "students.json")
-student_db = TinyDB(db_file_path)
+# 🔹 MongoDB Connection
+MONGO_URI = os.getenv("MONGO_URI", "mongodb://localhost:27017/")
+client = MongoClient(MONGO_URI)
+db = client["student_db"]  # Database Name
+student_collection = db["students"]  # Collection Name
 
 
 def add(student=None):
-    queries = []
-    query = Query()
-    queries.append(query.first_name == student.first_name)
-    queries.append(query.last_name == student.last_name)
-    query = reduce(lambda a, b: a & b, queries)
-    res = student_db.search(query)
-    if res:
-        return 'already exists', 409
+    """Adds a student to MongoDB, ensuring uniqueness based on first and last name."""
+    if not student:
+        return "Invalid student data", 400
 
-    doc_id = student_db.insert(student.to_dict())
-    student.student_id = doc_id
-    return student.student_id
+    # Check if a student with this student id already exists
+    existing_student = student_collection.find_one({
+        "student_id": student.student_id
+    })
+
+    if existing_student:
+        return "already exists", 409
+
+    # Insert new student
+    student_dict = student.to_dict()
+    return student_collection.insert_one(student_dict)
 
 
 def get_by_id(student_id=None, subject=None):
-    student = student_db.get(doc_id=int(student_id))
+    """Retrieves a student by ID from MongoDB."""
+    if not student_id:
+        return "Student ID is required", 400
+
+    student = student_collection.find_one({"student_id": student_id})
+
     if not student:
-        return 'not found', 404
-    student['student_id'] = student_id
-    print(student)
+        return "not found", 404
+
     return student
 
-
 def delete(student_id=None):
-    student = student_db.get(doc_id=int(student_id))
-    if not student:
-        return 'not found', 404
-    student_db.remove(doc_ids=[int(student_id)])
+    """Deletes a student from MongoDB by ID."""
+    if not student_id:
+        return "Student ID is required", 400
+
+    result = student_collection.delete_one({"student_id": student_id})
+
+    if result.deleted_count == 0:
+        return "not found", 404
+
     return student_id
