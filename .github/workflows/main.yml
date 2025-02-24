@@ -12,7 +12,7 @@ jobs:
 
       - name: Run docker-compose to build and start services
         run: |
-          docker-compose up -d --build
+          docker compose up -d --build
           docker ps
           sleep 5
 
