@@ -27,12 +27,12 @@ def add(student=None):
     return str(result.inserted_id)
 
 
-def get_by_id(student_id=None, subject=None):
+def get_by_id(_id=None, subject=None):
     """Retrieves a student by ID from MongoDB."""
-    if not student_id:
-        return "Student ID is required", 400
+    if not _id:
+        return "ID is required", 400
 
-    student = student_collection.find_one({"student_id": student_id})
+    student = student_collection.find_one({"_id": _id})
 
     if not student:
         return "not found", 404
@@ -40,14 +40,14 @@ def get_by_id(student_id=None, subject=None):
     student["_id"] = str(student["_id"])
     return student
 
-def delete(student_id=None):
+def delete(_id=None):
     """Deletes a student from MongoDB by ID."""
-    if not student_id:
-        return "Student ID is required", 400
+    if not _id:
+        return "ID is required", 400
 
-    result = student_collection.delete_one({"student_id": student_id})
+    result = student_collection.delete_one({"_id": _id})
 
     if result.deleted_count == 0:
         return "not found", 404
 
-    return student_id
+    return _id
