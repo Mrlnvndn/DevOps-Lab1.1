@@ -1,5 +1,6 @@
 import os
 from pymongo import MongoClient
+from bson import ObjectId
 
 # 🔹 MongoDB Connection
 MONGO_URI = os.getenv("MONGO_URI", "mongodb://localhost:27017/")
@@ -31,7 +32,7 @@ def get_by_id(_id=None, subject=None):
     if not _id:
         return "ID is required", 400
 
-    student = student_collection.find_one({"_id": _id})
+    student = student_collection.find_one({"_id": ObjectId(_id)})
 
     if not student:
         return "not found", 404
@@ -44,7 +45,7 @@ def delete(_id=None):
     if not _id:
         return "ID is required", 400
 
-    result = student_collection.delete_one({"_id": _id})
+    result = student_collection.delete_one({"_id": ObjectId(_id)})
 
     if result.deleted_count == 0:
         return "not found", 404

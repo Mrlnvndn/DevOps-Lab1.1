@@ -6,6 +6,7 @@ from swagger_server import util
 
 from swagger_server.service.student_service import *
 
+
 def add_student(body=None):  # noqa: E501
     """Add a new student
 
@@ -22,27 +23,27 @@ def add_student(body=None):  # noqa: E501
     return 500, 'error'
 
 
-def delete_student(student_id):  # noqa: E501
+def delete_student(_id):  # noqa: E501
     """deletes a student
 
     delete a single student  # noqa: E501
 
-    :param student_id: the uid
-    :type student_id: int
+    :param id: the uid
+    :type id: str
 
     :rtype: object
     """
-    return delete(student_id)
+    return delete(_id)
 
 
-def get_student_by_id(student_id):  # noqa: E501
+def get_student_by_id(_id):  # noqa: E501
     """gets student
 
     Returns a single student # noqa: E501
 
-    :param student_id: the uid
-    :type student_id: int
+    :param id: the uid
+    :type id: str
 
     :rtype: Student
     """
-    return get_by_id(student_id)
+    return get_by_id(_id)
