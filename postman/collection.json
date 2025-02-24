@@ -1161,7 +1161,7 @@
 									"count++;",
 									"postman.setEnvironmentVariable(\"count\",count);",
 									"console.log(count)",
-									"if (count < 200) {",
+									"if (count < 10) {",
 									"    postman.setNextRequest(\"9.Add a new random student\");",
 									"} else{",
 									"    // pm.test(\"Total elapsed time must be  less than 100\", function () {",
