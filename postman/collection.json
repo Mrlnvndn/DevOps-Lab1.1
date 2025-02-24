@@ -19,7 +19,8 @@
 								"exec": [
 									"tests[\"Status code is 200\"] = responseCode.code === 200;",
 									"tests[\"Response should not be 'do some magic!'\"] = responseBody != \"do some magic!\";",
-									"// pm.globals.set(\"student_id\", responseBody);"
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"_id\", jsonData);"
 								],
 								"type": "text/javascript"
 							}
@@ -40,17 +41,12 @@
 									"    return chars.substr( Math.floor(Math.random() * 62), 1);",
 									"}",
 									"",
-									"function random_int(size) {",
-									"    return Math.floor(Math.random() * (10 ** size));",
-									"}",
 									"",
 									"var first_name = random_string(20);",
 									"var last_name = random_string(20);",
-									"var student_id = random_int(6)",
 									"",
 									"postman.setEnvironmentVariable(\"first_name\", first_name);",
 									"postman.setEnvironmentVariable(\"last_name\", last_name);",
-									"postman.setEnvironmentVariable(\"student_id\", student_id);",
 									"",
 									"",
 									"var start = new Date().getTime();",
@@ -195,13 +191,13 @@
 							}
 						],
 						"url": {
-							"raw": "{{baseUrl}}/student/{{student_id}}",
+							"raw": "{{baseUrl}}/student/{{_id}}",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"student",
-								"{{student_id}}"
+								"{{_id}}"
 							]
 						},
 						"description": "Returns a single student"
@@ -500,13 +496,13 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/student/{{student_id}}",
+							"raw": "{{baseUrl}}/student/{{_id}}",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"student",
-								"{{student_id}}"
+								"{{_id}}"
 							]
 						}
 					},
@@ -635,13 +631,13 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/student/{{student_id}}",
+							"raw": "{{baseUrl}}/student/{{_id}}",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"student",
-								"{{student_id}}"
+								"{{_id}}"
 							]
 						}
 					},
@@ -1158,6 +1154,8 @@
 								"exec": [
 									"tests[\"Status code is 200\"] = responseCode.code === 200;",
 									"tests[\"Response should not be 'do some magic!'\"] = responseBody != \"do some magic!\";",
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"_id\", jsonData);",
 									"",
 									"count = postman.getEnvironmentVariable(\"count\");",
 									"count++;",
@@ -1318,6 +1316,8 @@
 								"exec": [
 									"tests[\"Status code is 200\"] = responseCode.code === 200;",
 									"tests[\"Response should not be 'do some magic!'\"] = responseBody != \"do some magic!\";",
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"_id\", jsonData);",
 									""
 								],
 								"type": "text/javascript"
@@ -1372,7 +1372,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"first_name\": \"{{first_name}}\",\n    \"last_name\": \"{{last_name}}\",\n    \"grade_records\": [\n        {\n            \"subject_name\": \"{{subject_name_1}}\",\n            \"grade\": {{grade_1}}\n        },\n        {\n            \"subject_name\": \"{{subject_name_2}}\",\n            \"grade\": {{grade_2}}\n        }\n    ]\n}"
+							"raw": "{\n    \"first_name\": \"{{first_name}}\",\n    \"last_name\": \"{{last_name}}\",\n    \"student_id\": \"{{last_name}}\",\n    \"grade_records\": [\n        {\n            \"subject_name\": \"{{subject_name_1}}\",\n            \"grade\": {{grade_1}}\n        },\n        {\n            \"subject_name\": \"{{subject_name_2}}\",\n            \"grade\": {{grade_2}}\n        }\n    ]\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/student",
