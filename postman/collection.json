@@ -1372,7 +1372,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"first_name\": \"{{first_name}}\",\n    \"last_name\": \"{{last_name}}\",\n    \"student_id\": \"{{last_name}}\",\n    \"grade_records\": [\n        {\n            \"subject_name\": \"{{subject_name_1}}\",\n            \"grade\": {{grade_1}}\n        },\n        {\n            \"subject_name\": \"{{subject_name_2}}\",\n            \"grade\": {{grade_2}}\n        }\n    ]\n}"
+							"raw": "{\n    \"first_name\": \"{{first_name}}\",\n    \"last_name\": \"{{last_name}}\",\n    \"student_id\": \"{{student_id}}\",\n    \"grade_records\": [\n        {\n            \"subject_name\": \"{{subject_name_1}}\",\n            \"grade\": {{grade_1}}\n        },\n        {\n            \"subject_name\": \"{{subject_name_2}}\",\n            \"grade\": {{grade_2}}\n        }\n    ]\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/student",
