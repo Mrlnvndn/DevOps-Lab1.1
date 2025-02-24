@@ -26,7 +26,6 @@ def add(student=None):
     result = student_collection.insert_one(student_dict)
     return str(result.inserted_id)
 
-
 def get_by_id(_id=None, subject=None):
     """Retrieves a student by ID from MongoDB."""
     if not _id:

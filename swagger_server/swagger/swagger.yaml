@@ -12,20 +12,20 @@ servers:
 - url: https://virtserver.swaggerhub.com/tutorial/1.0.0
   description: SwaggerHub API Auto Mocking
 paths:
-  /student/{student_id}:
+  /student/{_id}:
     get:
       summary: gets student
       description: Returns a single student
       operationId: get_student_by_id
       parameters:
-      - name: student_id
+      - name: _id
         in: path
         description: the uid
         required: true
         style: simple
         explode: false
         schema:
-          type: integer
+          type: string
       responses:
         "200":
           description: Successful operation
@@ -44,14 +44,14 @@ paths:
         delete a single student
       operationId: delete_student
       parameters:
-      - name: student_id
+      - name: _id
         in: path
         description: the uid
         required: true
         style: simple
         explode: false
         schema:
-          type: integer
+          type: string
       responses:
         "200":
           description: Successful operation
