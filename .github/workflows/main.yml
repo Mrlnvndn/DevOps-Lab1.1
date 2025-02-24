@@ -10,14 +10,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
-
-      - name: Build and run services with Docker Compose
+      - name: Run docker-compose to build and start services
         run: |
-          docker-compose up -d
-          docker-compose ps
-          sleep  5
+          docker-compose up -d --build
+          docker ps
+          sleep 5
 
       - name: "Check files existence"
         uses: andstor/file-existence-action@v2
