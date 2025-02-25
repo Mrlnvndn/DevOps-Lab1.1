@@ -1,6 +1,7 @@
 version: '3'
 services:
   student_service:
+    image: ${REPO_NAME}/${IMAGE_NAME}
     build: .
     restart: unless-stopped
     depends_on:
