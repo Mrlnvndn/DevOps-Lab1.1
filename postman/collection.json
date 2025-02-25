@@ -1161,7 +1161,7 @@
 									"count++;",
 									"postman.setEnvironmentVariable(\"count\",count);",
 									"console.log(count)",
-									"if (count < 10) {",
+									"if (count < 200) {",
 									"    postman.setNextRequest(\"9.Add a new random student\");",
 									"} else{",
 									"    // pm.test(\"Total elapsed time must be  less than 100\", function () {",
@@ -1230,7 +1230,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"first_name\": \"{{first_name}}\",\n    \"last_name\": \"{{last_name}}\",\n    \"student_id\": \"{{student_id}}\",\n    \"grade_records\": [\n        {\n            \"subject_name\": \"{{subject_name_1}}\",\n            \"grade\": {{grade_1}}\n        },\n        {\n            \"subject_name\": \"{{subject_name_2}}\",\n            \"grade\": {{grade_2}}\n        }\n    ]\n}"
+							"raw": "{\n    \"first_name\": \"{{first_name}}\",\n    \"last_name\": \"{{last_name}}\",\n    \"student_id\": {{student_id}},\n    \"grade_records\": [\n        {\n            \"subject_name\": \"{{subject_name_1}}\",\n            \"grade\": {{grade_1}}\n        },\n        {\n            \"subject_name\": \"{{subject_name_2}}\",\n            \"grade\": {{grade_2}}\n        }\n    ]\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/student",
@@ -1372,7 +1372,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"first_name\": \"{{first_name}}\",\n    \"last_name\": \"{{last_name}}\",\n    \"student_id\": \"{{student_id}}\",\n    \"grade_records\": [\n        {\n            \"subject_name\": \"{{subject_name_1}}\",\n            \"grade\": {{grade_1}}\n        },\n        {\n            \"subject_name\": \"{{subject_name_2}}\",\n            \"grade\": {{grade_2}}\n        }\n    ]\n}"
+							"raw": "{\n    \"first_name\": \"{{first_name}}\",\n    \"last_name\": \"{{last_name}}\",\n    \"student_id\": {{student_id}},\n    \"grade_records\": [\n        {\n            \"subject_name\": \"{{subject_name_1}}\",\n            \"grade\": {{grade_1}}\n        },\n        {\n            \"subject_name\": \"{{subject_name_2}}\",\n            \"grade\": {{grade_2}}\n        }\n    ]\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/student",
